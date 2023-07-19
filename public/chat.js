@@ -6,6 +6,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
+  fetch('/chat')
+    .then(async (response) => {
+      const { chat_history }  = await response.json()
+      console.log( chat_history);
+      chat_history.slice(0,3).forEach((message) => {
+        appendMessage(message.role, message.content);
+      });
+    });
 
   // Event listener for send button click
   sendButton.addEventListener("click", function () {
