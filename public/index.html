@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chat Bot</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div id="chatContainer" class="container">
+      <div id="chatMessages"></div>
+      <div class="input-group mb-3">
+        <input type="text" id="inputMessage" class="form-control" placeholder="Type your message...">
+        <div class="input-group-append">
+          <button id="sendButton" class="btn btn-primary">Send</button>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+      fetch('https://source.unsplash.com/random')
+        .then((response) => {
+          document.body.style.backgroundImage = `url(${response.url})`;
+        });
+    </script>
+    <script src="chat.js"></script>
+  </body>
+</html>

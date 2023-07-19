@@ -1,0 +1,27 @@
+{
+  "name": "vert.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bthornemail/vert.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bthornemail/vert.io/issues"
+  },
+  "homepage": "https://github.com/bthornemail/vert.io#readme",
+  "dependencies": {
+    "@types/marked": "^5.0.1",
+    "express": "^4.18.2",
+    "marked": "^5.1.1",
+    "openai": "^3.3.0"
+  }
+}
