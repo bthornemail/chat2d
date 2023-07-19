@@ -10,7 +10,7 @@ function saveToDisk(input:string,output: string) {
     console.log(output);
     appendFileSync(join(__dirname, "messages", "index.md"), `\n{"${id}":"${input}"}`);
     writeFileSync(join(__dirname, "messages", `${id}.md`), output);
-    appendFileSync(join(__dirname, ".output.log.md"), `
+    appendFileSync(join(__dirname, "public","log.md"), `
     ${"``` JSON"}
     ${input}
     ${output}
