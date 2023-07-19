@@ -1,2 +1,15 @@
 
 {"1689791398447":"whats course nft"}
+{"1689793067278":"hello"}
+{"1689793107258":"whats vertcoin"}
+{"1689793213505":"what are a list of different names to call the vertcoin focusing on it being a decentealized marketplace for trustless trading if services, knowledge and assets"}
+{"1689793269569":"what are a list of different names to call the vertcoin focusing on it being a decentealized marketplace for trustless trading if services, knowledge and assets i like freemarket coin"}
+{"1689793340083":"what are a list of different names to call the vertcoin focusing on it being a decentealized marketplace for trustless trading if services, knowledge and assets i like freemarket coin or estate token"}
+{"1689793376803":"what are a list of different names to call the vertcoin focusing on it being a decentealized marketplace for trustless trading if services, knowledge and assets i like peer swap"}
+{"1689793456775":"what are a list of different names to call the vertcoin focusing on it being a decentealized marketplace for trustless trading if services, knowledge and assets i like p2p market and open exchange for the ckient app  do they alreqdy exist"}
+{"1689793548852":"what are a list of different names to call the vertcoin focusing on it being a decentealized marketplace for trustless trading if services, knowledge and assets i like p2p market openswap and open exchange or peer connect marketplace for the ckient app  do they alreqdy exist"}
+{"1689793610286":"what are a list of different names to call the vertcoin focusing on it being a decentealized marketplace for trustless trading if services, knowledge and assets i like p2p market openswap and open exchange or peer connect marketplace for the ckient app  do they alreqdy exist"}
+{"1689793788227":"what are a list of different names to call the vertcoin focusing on it being a decentealized marketplace for trustless trading if services, knowledge and assets i like p2p market openswap and open exchange or peer connect marketplace for the ckient app  do they alreqdy exist"}
+{"1689793927723":"What would a governance contact look like"}
+{"1689794491024":"Hello"}
+{"1689794534025":"// SPDX-License-Identifier: MIT pragma solidity ^0.8.0;  contract Governance {     struct Proposal {         string description;         uint voteCount;     }      address public owner;     Proposal[] public proposals;      mapping(address => bool) public voters;      constructor() {         owner = msg.sender;     }      function addVoter(address _voter) public {         require(msg.sender == owner, "Only the contract owner can add voters");         voters[_voter] = true;     }      function createProposal(string memory _description) public {         require(voters[msg.sender], "Only voters can create proposals");         proposals.push(Proposal(_description, 0));     }      function vote(uint _proposalIndex) public {         require(voters[msg.sender], "Only voters can vote");         proposals[_proposalIndex].voteCount++;     } }"}
