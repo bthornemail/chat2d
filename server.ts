@@ -10,6 +10,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.post("/chat", async (req, res) => {
+    marked.setOptions({
+        mangle: false,
+        headerIds: false,
+    });
     const html = marked.parse(await chat(req.body.message));
     res.json({ response:  html})
 })

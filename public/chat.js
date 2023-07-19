@@ -35,7 +35,6 @@ document.addEventListener("DOMContentLoaded", function () {
   async function sendMessage(message) {
     appendMessage("user", message);
     appendMessage("system", "Sending message...");
-
     try {
       // Perform API call to the server with the message
       const response = await fetch("/chat", {
