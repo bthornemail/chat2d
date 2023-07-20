@@ -27,9 +27,9 @@ function saveToDisk(input: string, output: string) {
     // vectorDb.createDoc(output);
     // vectorDb.save()
 }
-export default async function chat(input: string, dir?: string) {
+export default async function chat(input: string,dir?:string) {
 
-    // dir && embedFilesInSubdirectorySync(dir);
+    dir && embedFilesInSubdirectorySync(dir);
     try {
         console.log("Starting Chat Bot");
         const initMessages: ChatCompletionRequestMessage[] = [
@@ -39,29 +39,25 @@ export default async function chat(input: string, dir?: string) {
             { role: "assistant", content: readFileSync(join(__dirname, "init", "assistant.txt"), "utf-8") }
         ]
         // console.log(initMessages)
-        // if (devMode) {
-        //     const similar = await vectorDb.getSimiliar(input, 3);
-        //     console.log("similar");
-        //     console.log(similar);
-        //     const chatCompletion: any = { data: { choices: [{ message: { content: "Dev Mode is on\n" + JSON.stringify(similar) } }] } }
-        //     console.log(chatCompletion.data.choices[0].message?.content);
-        //     return chatCompletion.data.choices[0].message?.content;
-        // }
+        if (devMode) {
+            const similar = await vectorDb.getSimiliar(input, 3);
+            console.log("similar");
+            console.log(similar);
+            const chatCompletion: any = { data: { choices: [{ message: { content: "Dev Mode is on\n"+ JSON.stringify(similar) } }] } }
+            console.log(chatCompletion.data.choices[0].message?.content);
+            return chatCompletion.data.choices[0].message?.content;
+        }
         const chatCompletion: any = await openai.createChatCompletion({
             user: "chat_gpt",
             model: "gpt-4",
             messages: initMessages.concat({ role: "user", content: input }),
         }).catch((reason) => {
             console.log("error in chat completion");
-            console.log(reason.response.statusText);
+            console.log(reason.data);
             return reason;
         });
-        if (chatCompletion) {
-            console.log(chatCompletion.usage)
-            saveToDisk(input, chatCompletion.data.choices[0].message?.content)
-            return chatCompletion.data.choices[0].message?.content;
-        }
-        return console.log("Not Executed")
+        saveToDisk(input, chatCompletion.data.choices[0].message?.content)
+        return chatCompletion.data.choices[0].message?.content;
     } catch (error) {
         console.error(error);
         return error;

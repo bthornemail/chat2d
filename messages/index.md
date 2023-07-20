@@ -1,41 +1,256 @@
 
-{"1689791398447":"whats course nft"}
-{"1689796634559":"hello"}
-{"1689796658532":"whats course NFT"}
-{"1689796688243":"whats coursesgpt"}
-{"1689796723304":"whats coursegpt"}
-{"1689797005680":"whats coursenft"}
-{"1689797095570":"make me a vanilla js html5 with bootstrap styling for using coursenftt contract"}
-{"1689797225580":"make a html5 vanilla js using bootstrap stylin for courseNFT"}
-{"1689798039144":"whats courseNFT"}
-{"1689798539862":"hello"}
-{"1689798718208":"Whats courseNFT"}
-{"1689798854917":"whats courseNFT"}
-{"1689798913494":"What are you talking about"}
-{"1689798928649":"okay"}
-{"1689798955274":"what are you talking about"}
-{"1689816353618":"no input detected"}
-{"1689816424619":"no input detected"}
-{"1689838699820":"no input detected"}
-{"1689839059454":"whats courseNFT"}
-{"1689839091818":"whats courseNFT"}
-{"1689840614915":"whats moveronlinenow"}
-{"1689840822172":"whats moveronlinenow used for"}
-{"1689840894067":"whats the difference of moversonlinenow and vertcoin"}
-{"1689840999122":"whats the difference of moversonlinenow and vertcoin"}
-{"1689841035472":"whats the difference of moversonlinenow and vertcoin"}
-{"1689841099263":"whats the difference of moversonlinenow and vertcoin"}
-{"1689841240307":"whats the difference of moversonlinenow and vertcoin"}
-{"1689841291374":"whats the difference of moversonlinenow and vertcoin"}
-{"1689841351580":"whats courseNFT"}
-{"1689841387833":"whats the difference of moversonlinenow and vertcoin"}
-{"1689841430022":"whats the difference of moversonlinenow and vertcoin"}
-{"1689841514855":"whats courseNFT"}
-{"1689841538874":"whats courseNFT"}
-{"1689841585876":"whats courseNFT"}
-{"1689841663906":"what upgrades should i make to courseNFT"}
-{"1689845938522":"what upgrades should i make to loveconnection.io"}
-{"1689845985675":"what is loveconnection.io"}
-{"1689846009997":"what is loveconnection.io"}
-{"1689846069434":"what is loveconnection.io"}
-{"1689846134925":"what is loveconnection.io"}
+{"1689851332482":"what improvements can i make to the front end"}
+{"1689851407240":"make a landing page for the courseNFT implemning all functions"}
+{"1689851556952":"make a landing page for the courseNFT implemning all functions using ipfs-http-client and react-bootstrap"}
+{"1689851957133":"make a landing page for the assetNFT implemning all functions using ipfs-http-client and react-bootstrap with qrcodes for registering assets"}
+{"1689852032910":"make a landing page for the assetNFT implemning all functions using ipfs-http-client and html5 and vanilla js with qrcodes for registering assets"}
+{"1689852167676":"make a landing page for the courseNFT implemning all functions using ipfs-http-client and html5 and vanilla js with bootstrap for styling"}
+{"1689853761241":"make a landing page for the serviceNFT implemning all functions using ethersjs, ipfs and html5 and vanilla js with bootstrap for styling"}
+{"1689856208280":"make a landing page for the serviceNFT implemnting all functions using helia ipfs and html5 and vanilla js with bootstrap for styling"}
+{"1689856329400":"make a landing page with inline script tag for the serviceNFT implemnting all functions using helia ipfs and html5 and vanilla js with bootstrap for styling"}
+{"1689856580496":"make the js for the courseNFT html page"}
+{"1689856982870":"make a landing page with inline script tag to mint a new serviceNFT implemnting all functions using helia ipfs and html5 and vanilla js with bootstrap for styling"}
+{"1689857404682":"make a landing page to create a new courseNFT contract with te options of creating a new exam with test and or task using helia ipfs and html5 and vanilla js with bootstrap for styling"}
+{"1689857546317":"create javascript for courseNFT landing page"}
+{"1689857863883":"TypeError: Types in storage containing (nested) mappings cannot be assigned to.
+--> contracts/CourseNFT.sol:70:9:
+|
+70 | tests[testId] = Test(msg.sender, false, _ipfsHash);
+| ^^^^^^^^^^^^^
+
+TypeError: Struct containing a (nested) mapping cannot be constructed.
+--> contracts/CourseNFT.sol:70:25:
+|
+70 | tests[testId] = Test(msg.sender, false, _ipfsHash);
+| ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"}
+{"1689858061422":"TypeError: Member "testIds" not found or not visible after argument-dependent lookup in struct CourseNFT.Course storage ref.
+   --> contracts/CourseNFT.sol:106:9:
+    |
+106 |         courses[_courseId].testIds.push(testId);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+"}
+{"1689858135598":"TypeError: Member "testIds" not found or not visible after argument-dependent lookup in struct CourseNFT.Course storage ref.
+   --> contracts/CourseNFT.sol:106:9:
+    |
+106 |         courses[_courseId].testIds.push(testId);
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+"}
+{"1689858340443":"create a landing page to register and view assets to ipfs by using a datasheet and photo of item to be registered and presenting a qrcode of ipfs registration"}
+{"1689858505180":"edit landing page javascript to register and view assets to ipfs by using a datasheet and photo of item to be registered and presenting a qrcode of ipfs registration"}
+{"1689858811015":"edit landing page javascript to mint new AssetNFTs, register and view assets to ipfs by using a datasheet and photo of item to be registered with vertcoin "}
+{"1689858997161":"edit landing page javascript to mint new AssetNFTs, register and view assets to helia ipfs by using a datasheet and photo of item to be registered with vertcoin using metamask"}
+{"1689859173771":"create landing page to create neww assetNFT contracts, mint new AssetNFTs, register and view assets to helia ipfs by using a datasheet and photo of item to be registered with vertcoin using html5, vanilla js, metamask, helia"}
+{"1689859402722":"create landing page to create neww assetNFT contracts, mint new AssetNFTs, register and view assets to helia ipfs by using a datasheet and photo of item to be registered with vertcoin using html5, vanilla js, metamask, helia"}
+{"1689859762425":"create landing page to create neww assetNFT contracts, mint new AssetNFTs, register and view assets to helia ipfs by using a datasheet and photo of item to be registered with vertcoin using html5, vanilla js, ethersjs, metamask, helia"}
+{"1689859998974":"create landing page to create neww assetNFT contracts, mint new AssetNFTs, register and view assets to helia ipfs by using a datasheet and photo of item to be registered with vertcoin using sample styling, html5, vanilla js, ethersjs, metamask, helia"}
+{"1689860130898":"create landing page to create neww assetNFT contracts, mint new AssetNFTs, register and view assets to helia ipfs by using a datasheet and photo of item to be registered with vertcoin "}
+{"1689860449432":"create landing page to :
+- create a assetNFT contracts, 
+- mint new AssetNFTs to contract 
+- register assets
+-- with name,summary,description,value,and datasheet { [key:string]:string}
+-- upload and view image
+-- value in VertCoin
+-- to ipfs using helia 
+- view assets
+- trade assets"}
+{"1689860633804":"create landing page to :
+- create a assetNFT contracts, 
+- mint new AssetNFTs to contract 
+- register assets
+-- with name,summary,description,value,and datasheet { [key:string]:string}
+-- upload and view image
+-- value in VertCoin
+-- using helia 
+- view assets
+- trade assets"}
+{"1689860972557":"create landing page to :
+- create a assetNFT contracts, 
+- mint new AssetNFTs to contract 
+- register assets
+-- with name,summary,description,value,and datasheet { [key:string]:string}
+-- upload and view image
+-- value in VertCoin
+-- using helia 
+- view assets
+- trade assets"}
+{"1689861055981":"create landing page to :
+- create a assetNFT contracts, 
+- mint new AssetNFTs to contract 
+- register assets
+-- with name,summary,description,value,and datasheet { [key:string]:string}
+-- upload and view image
+-- value in VertCoin
+-- using helia 
+- view assets
+- trade assets"}
+{"1689861153492":"create landing page to and server api:
+- create a assetNFT contracts, 
+- mint new AssetNFTs to contract 
+- register assets
+-- with name,summary,description,value,and datasheet { [key:string]:string}
+-- upload and view image
+-- value in VertCoin
+-- using helia 
+- view assets
+- trade assets"}
+{"1689861240793":"create landing page to and server api:
+- create a assetNFT contracts, 
+- mint new AssetNFTs to contract 
+- register assets
+-- with name,summary,description,value,and datasheet { [key:string]:string}
+-- upload and view image
+-- value in VertCoin
+-- using helia 
+- view assets
+- trade assets"}
+{"1689861461349":"create landing page to and server api:
+- create a assetNFT contracts, 
+- mint new AssetNFTs to contract 
+- register assets
+-- with name,summary,description,value,and datasheet { [key:string]:string}
+-- upload and view image
+-- value in VertCoin
+-- using helia 
+- view assets
+- trade assets"}
+{"1689861618178":"edit server api:
+- create a assetNFT contracts, 
+- mint new AssetNFTs to contract 
+- register assets
+-- with name,summary,description,value,and datasheet { [key:string]:string}
+-- upload and view image
+-- value in VertCoin
+-- using helia 
+- view assets
+- trade assets"}
+{"1689861704478":"edit server api:
+- create a assetNFT contracts, 
+- mint new AssetNFTs to contract 
+- register assets
+-- with name,summary,description,value,and datasheet { [key:string]:string}
+-- upload and view image
+-- value in VertCoin
+-- using helia 
+- view assets
+- trade assets"}
+{"1689861777498":"fix errors
+/usr/local/lib/node_modules/ts-node/src/index.ts:859
+    return new TSError(diagnosticText, diagnosticCodes, diagnostics);
+           ^
+TSError: ⨯ Unable to compile TypeScript:
+server.ts:3:24 - error TS2307: Cannot find module 'ethers' or its corresponding type declarations.
+
+3 import { ethers } from 'ethers';
+                         ~~~~~~~~
+server.ts:4:20 - error TS2307: Cannot find module 'multer' or its corresponding type declarations.
+
+4 import multer from 'multer';
+                     ~~~~~~~~
+server.ts:5:25 - error TS2732: Cannot find module './contractABI.json'. Consider using '--resolveJsonModule' to import module with '.json' extension.
+
+5 import contractABI from './contractABI.json';
+                          ~~~~~~~~~~~~~~~~~~~~
+server.ts:6:22 - error TS2732: Cannot find module './VertCoin.json'. Consider using '--resolveJsonModule' to import module with '.json' extension.
+
+6 import VertCoin from './VertCoin.json';
+                       ~~~~~~~~~~~~~~~~~
+server.ts:50:37 - error TS2339: Property 'file' does not exist on type 'Request<{}, any, any, ParsedQs, Record<string, any>>'.
+
+50   const image = fs.readFileSync(req.file.path);
+                                       ~~~~
+
+    at createTSError (/usr/local/lib/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/usr/local/lib/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/usr/local/lib/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/usr/local/lib/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/usr/local/lib/node_modules/ts-node/src/index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1138:10)
+    at Object.require.extensions.<computed> [as .ts] (/usr/local/lib/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:989:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:829:14)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:76:12) {
+  diagnosticCodes: [ 2307, 2307, 2732, 2732, 2339 ]
+}"}
+{"1689862400232":"edit server api to add functionality to:
+- create a assetNFT contracts, 
+- mint new AssetNFTs to contract 
+- register assets
+-- with name,summary,description,value,and datasheet { [key:string]:string}
+-- upload and view image
+-- value in VertCoin
+-- using helia 
+- view assets
+- trade assets"}
+{"1689862800403":"edit server api to add functionality to:
+- create a assetNFT contracts, 
+- mint new AssetNFTs to contract 
+- register assets
+-- with name,summary,description,value,and datasheet { [key:string]:string}
+-- upload and view image
+-- value in VertCoin
+- view assets
+- trade assets"}
+{"1689862868767":"edit server api to add functionality to:
+- create a assetNFT contracts, 
+- mint new AssetNFTs to contract 
+- register assets
+-- with name,summary,description,value,and datasheet { [key:string]:string}
+-- upload and view image
+-- value in VertCoin
+- view assets
+- trade assets"}
+{"1689863429463":"edit server api to add functionality to:
+- create a assetNFT contracts, 
+- mint new AssetNFTs to contract 
+- register assets
+-- with name,summary,description,value,and datasheet { [key:string]:string}
+-- upload and view image
+-- value in VertCoin
+- view assets
+- trade assets"}
+{"1689863645011":"edit server api to add functionality to:
+- create a assetNFT contracts, 
+- mint new AssetNFTs to contract 
+- register assets
+-- with name,summary,description,value,and datasheet { [key:string]:string}
+-- upload and view image
+-- value in VertCoin
+- view assets
+- trade assets"}
+{"1689863820476":"edit server api to add functionality to:
+- create a assetNFT contracts, 
+- mint new AssetNFTs to contract 
+- register assets
+-- with name,summary,description,value,and datasheet { [key:string]:string}
+-- upload and view image
+-- value in VertCoin
+- view assets
+- trade assets"}
+{"1689864393301":"edit server api to add functionality to:
+- create a assetNFT contracts, 
+- mint new AssetNFTs to contract 
+- register assets
+-- with name,summary,description,value,and datasheet { [key:string]:string}
+-- upload and view image
+-- value in VertCoin
+- view assets
+- trade assets"}
+{"1689864611405":"edit server api to add functionality to:
+- create a assetNFT contracts, 
+- mint new AssetNFTs to contract 
+- register assets
+-- with name,summary,description,value,and datasheet { [key:string]:string}
+-- upload and view image
+-- value in VertCoin
+- view assets
+- trade assets"}
+{"1689864758480":"edit server api to add functionality to:
+- create a assetNFT contracts, 
+- mint new AssetNFTs to contract 
+- register assets
+-- with name,summary,description,value,and datasheet { [key:string]:string}
+-- upload and view image
+-- value in VertCoin
+- view assets
+- trade assets"}

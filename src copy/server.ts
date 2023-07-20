@@ -40,13 +40,6 @@ app.post("/chat", async (req, res) => {
     const html = marked.parse(output);
     res.json({ response: html })
 })
-app.post('/mint', (req, res) => {
-    // mint new AssetNFTs to the contract here
-    const asset = req.body;
-    // Pass asset to your contract mint function
-    // For example: contract.methods.mintAsset(asset).send({from: account});
-    res.send('Asset minted!');
-  })
 // Start the server
 app.listen(port, () => {
     console.log(`Server is running on port http://localhost:${port}`);
