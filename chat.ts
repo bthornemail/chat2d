@@ -2,30 +2,46 @@ import { appendFileSync, readFileSync, writeFileSync } from "fs";
 import openai from "./utils/openai";
 import { join } from "path";
 import { ChatCompletionRequestMessage } from "openai";
-import readFilesInSubdirectorySync from "./utils/readFilesInSubdirectorySync";
+import VectorDatabase from "./utils/vector.db";
+import embedFilesInSubdirectorySync from './bin/embed.all.files.in.dir';
 
-function saveToDisk(input:string,output: string) {
+const devMode = false;
+// const devMode = true;
+const vectorDb = new VectorDatabase("chat");
+function saveToDisk(input: string, output: string) {
     const id = Date.now();
     console.log("New Chat Completion: " + id);
     console.log(output);
     appendFileSync(join(__dirname, "messages", "index.md"), `\n{"${id}":"${input}"}`);
     writeFileSync(join(__dirname, "messages", `${id}.md`), output);
-    appendFileSync(join(__dirname, "public","log.md"), `
+    appendFileSync(join(__dirname, "public", "log.md"), `
     ${"``` JSON"}
     ${input}
     ${output}
     ${"```"}
     `, "utf-8");
-
+    // vectorDb.createDoc(output);
+    // vectorDb.save()
 }
-export default async function chat(input: string) {
+export default async function chat(input: string,dir?:string) {
+
+    dir && embedFilesInSubdirectorySync(dir);
     try {
         console.log("Starting Chat Bot");
         const initMessages: ChatCompletionRequestMessage[] = [
-            { role: "system", content: readFilesInSubdirectorySync(join(__dirname, "src")) },
+            // { role: "system", content: readFilesInSubdirectorySync(join(__dirname, "src")) },
+            { role: "system", content: JSON.stringify(await vectorDb.getSimiliar(input,3)) },
             { role: "system", content: readFileSync(join(__dirname, "init", "system.txt"), "utf-8") },
             { role: "assistant", content: readFileSync(join(__dirname, "init", "assistant.txt"), "utf-8") }
         ]
+        // console.log(initMessages)
+        if (devMode) {
+            const similar = await vectorDb.getSimiliar(input, 3);
+            // console.log(similar);
+            const chatCompletion: any = { data: { choices: [{ message: { content: "Dev Mode is on\n"+ JSON.stringify(similar) } }] } }
+            console.log(chatCompletion.data.choices[0].message?.content);
+            return chatCompletion.data.choices[0].message?.content;
+        }
         const chatCompletion: any = await openai.createChatCompletion({
             user: "chat_gpt",
             model: "gpt-4",
@@ -35,7 +51,7 @@ export default async function chat(input: string) {
             console.log(reason.data);
             return reason;
         });
-        saveToDisk(input,chatCompletion.data.choices[0].message?.content)
+        saveToDisk(input, chatCompletion.data.choices[0].message?.content)
         return chatCompletion.data.choices[0].message?.content;
     } catch (error) {
         console.error(error);

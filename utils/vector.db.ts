@@ -128,7 +128,7 @@ export default class VectorDatabase {
             // console.log(JSON.parse(doc).content);
             // return JSON.parse(doc).content;
             return doc;
-        }))).filter((result) => result !== undefined);
+        }))).filter((result: any) => result !== undefined);
     }
 }
 async function init(vectorDb: VectorDatabase) {

@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-
+import getAllFiles from './get.all.files';
 export default function readFilesInSubdirectorySync(directoryPath: string): string {
   // Get the absolute path of the subdirectory
   const subdirectoryPath = path.resolve(directoryPath);
