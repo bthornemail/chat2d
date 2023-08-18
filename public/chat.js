@@ -27,6 +27,17 @@ document.addEventListener("DOMContentLoaded", function () {
   function appendMessage(role, content) {
     const messageElement = document.createElement("div");
     messageElement.classList.add(role);
+    switch (role) {
+      case "system":
+      case "assistant":
+        messageElement.style.width = "fit-content";
+        messageElement.style.marginRight = "auto";
+        break;
+      default:
+        messageElement.style.width = "fit-content";
+        messageElement.style.marginLeft = "auto";
+        break;
+    }
     messageElement.innerHTML = content;
     chatMessages.appendChild(messageElement);
   }
