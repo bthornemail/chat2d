@@ -4402,3 +4402,107 @@ Remember that dealing with blockchain requires you to care about the security an
     ```
     ---
     
+    # New Chat Convrsation
+    `refactor courseNFT its not working`
+    ```
+    There seem to be several issues with your current version of CourseNFT. Here are some refactored versions of your contracts.
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.9;
+
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+
+contract CourseNFT is ERC721, Ownable {
+    uint256 private _currentTokenId = 0;
+
+    constructor() ERC721("CourseNFT", "CNFT") {}
+
+    function createNewToken() public onlyOwner returns (uint256) {
+        _currentTokenId++;
+        _mint(msg.sender, _currentTokenId);
+        return _currentTokenId;
+    }
+}
+
+contract CourseManager {
+    struct Course {
+        string courseName;
+        string description;
+        string resourceLink;
+        address owner;
+    }
+
+    mapping(uint256 => Course) private courses;
+    CourseNFT private courseNFT;
+
+    constructor(address _courseNFTAddress) {
+        courseNFT = CourseNFT(_courseNFTAddress);
+    }
+
+    function createCourse(string memory _courseName, string memory _description, string memory _resourceLink) external {
+        uint256 newTokenId = courseNFT.createNewToken();
+        Course memory newCourse = Course(_courseName, _description, _resourceLink, msg.sender);
+        courses[newTokenId] = newCourse;
+    }
+
+    function getCourseDetails(uint256 _tokenId)
+        external
+        view
+        returns (
+            string memory,
+            string memory,
+            string memory,
+            address
+        )
+    {
+        Course memory course = courses[_tokenId];
+        return (course.courseName, course.description, course.resourceLink, course.owner);
+    }
+}
+```
+
+Please note that you made the following changes:
+
+1. `CourseNFT` contract now only mints new tokens for the contract owner, and keeps track of the current token ID.
+
+2. `CourseManager` contract now has `Course` structure and `courses` mapping to store course details. The course details include `courseName`, `description`, `resourceLink` and `owner`.
+
+3. `CourseManager` uses the mint function `createNewToken` of `CourseNFT` to create new tokens for each course.
+
+4. `createCourse` function of `CourseManager` first creates a new token, then assigns this token to a specific course.
+
+5. `createCourse()` is made `external`, as it interacts with state variables `courses` and creates new tokens using external `createNewToken()` function.
+
+6. `getCourseDetails` function of `CourseManager` added to view the details of a specific course and its owner.
+
+Consider deploying `CourseNFT` first, then pass its address to the constructor of `CourseManager` while deploying.
+
+Please, make sure to carefully review the updated code and adjust it as needed to better fit your specific use-case and security considerations.
+    ```
+    ---
+    
+    # New Chat Convrsation
+    `Hello`
+    ```
+    Hello! How can I assist you today?
+    ```
+    ---
+    
+    # New Chat Convrsation
+    `Just wanted to see what was on my schedule for today`
+    ```
+    As an AI, you don't have a personal schedule. However, I can assist you in managing and creating tasks or reminders if needed.
+    ```
+    ---
+    
+    # New Chat Convrsation
+    `Give me a long string of text, im trying to see something`
+    ```
+    Here is a long string of text for your test:
+
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque consectetur, ante id vehicula aliquet, nunc nisl interdum ex, sed aliquet nibh augue id metus. Fusce vel pharetra velit. Donec volutpat vel orci id lacinia. Proin ultrices dui non dapibus fermentum. Donec lorem mauris, lacinia et elementum eu, congue vitae enim. Curabitur sit amet lacus massa. Cras in mollis enim, at cursus purus. Donec consequat est eu cursus congue. Pellentesque ut vestibulum dui. Morbi hendrerit elit non cursus ullamcorper. Proin tristique erat ut eros semper, sit amet pharetra leo finibus. Donec auctor auctor laoreet. Sed id erat auctor, pretium orci non, egestas ipsum."
+    ```
+    ---
+    

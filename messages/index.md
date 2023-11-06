@@ -254,3 +254,7 @@ server.ts:50:37 - error TS2339: Property 'file' does not exist on type 'Request<
 -- value in VertCoin
 - view assets
 - trade assets"}
+{"1699238167374":"refactor courseNFT its not working"}
+{"1699238231854":"Hello"}
+{"1699238261652":"Just wanted to see what was on my schedule for today"}
+{"1699238329135":"Give me a long string of text, im trying to see something"}
