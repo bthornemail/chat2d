@@ -1,10 +1,10 @@
 import { appendFileSync, readFileSync, writeFileSync } from "fs";
-import openai from "./utils/openai";
 import { join } from "path";
+import openai from "./utils/openai.js";
 import { ChatCompletionRequestMessage } from "openai";
-import VectorDatabase from "./utils/vector.db";
-import embedFilesInSubdirectorySync from './bin/embed.all.files.in.dir';
-import readAllFiles from './bin/readFilesInSubdirectorySync'
+import VectorDatabase from "./utils/vector.db.js";
+import embedFilesInSubdirectorySync from './bin/embed.all.files.in.dir.js';
+import readAllFiles from './bin/readFilesInSubdirectorySync.js'
 
 const devMode = false;
 // const devMode = true;
@@ -14,9 +14,9 @@ function saveToDisk(input: string, output: string) {
     const id = Date.now();
     console.log("New Chat Completion: " + id);
     console.log(output);
-    appendFileSync(join(__dirname, "messages", "index.md"), `\n{"${id}":"${input}"}`);
-    writeFileSync(join(__dirname, "messages", `${id}.md`), output);
-    appendFileSync(join(__dirname, "public", "log.md"), `
+    appendFileSync(join(import.meta.url, "messages", "index.md"), `\n{"${id}":"${input}"}`);
+    writeFileSync(join(import.meta.url, "messages", `${id}.md`), output);
+    appendFileSync(join(import.meta.url, "public", "log.md"), `
     # New Chat Convrsation
     ${"`"}${input}${"`"}
     ${"```"}
@@ -33,10 +33,10 @@ export default async function chat(input: string, dir?: string) {
     try {
         console.log("Starting Chat Bot");
         const initMessages: ChatCompletionRequestMessage[] = [
-            { role: "system", content: readAllFiles(join(__dirname, "src")) },
+            { role: "system", content: readAllFiles(join(import.meta.url, "src")) },
             // { role: "system", content: JSON.stringify(await vectorDb.getSimiliar(input,3)) },
-            { role: "system", content: readFileSync(join(__dirname, "init", "system.txt"), "utf-8") },
-            { role: "assistant", content: readFileSync(join(__dirname, "init", "assistant.txt"), "utf-8") }
+            { role: "system", content: readFileSync(join(import.meta.url, "init", "system.txt"), "utf-8") },
+            { role: "assistant", content: readFileSync(join(import.meta.url, "init", "assistant.txt"), "utf-8") }
         ]
         // console.log(initMessages)
         // if (devMode) {

@@ -1,8 +1,9 @@
-import { HierarchicalNSW } from 'hnswlib-node';
 import { Configuration, OpenAIApi } from "openai";
-import redis from './redis';
+import redis from './redis.js';
 import { join } from 'path';
 import { unlinkSync } from 'fs';
+import pkg from 'hnswlib-node';
+const { HierarchicalNSW } = pkg;
 export type VECTOR_DOCUMENT = {
     index?: string;
     embedding?: number[];
@@ -25,7 +26,7 @@ export default class VectorDatabase {
     botName: string;
     constructor(botName: string) {
         this.botName = botName;
-        const index: HierarchicalNSW = new HierarchicalNSW('cosine', numDimensions);
+        const index = new HierarchicalNSW('cosine', numDimensions);
         // index.initIndex(maxElements);
         try {
             index.readIndexSync(join(__dirname, `${this.botName}.dat`), true);
@@ -34,7 +35,7 @@ export default class VectorDatabase {
         }
         this.index = index;
     }
-    index: HierarchicalNSW;
+    index;
     save = () => {
         this.index.writeIndexSync(join(__dirname, `${this.botName}.dat`));
     }

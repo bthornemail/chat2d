@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
-import VectorDatabase from '../utils/vector.db';
-import getAllFiles from './get.all.files';
+import VectorDatabase from '../utils/vector.db.js';
+import getAllFiles from './get.all.files.js';
 // import { marked } from 'marked';
 
 const vectorDb = new VectorDatabase("chat");

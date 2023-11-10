@@ -1,6 +1,6 @@
 import { readdirSync, statSync } from "fs";
 import path, { join } from "path";
-import { Config } from "./types";
+import { Config } from "./types.js";
 
   
   export default function getAllFiles(directoryPath: string, _config?: Config): string[] {

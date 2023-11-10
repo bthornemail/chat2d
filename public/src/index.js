@@ -13,19 +13,19 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   helia.libp2p.addEventListener('peer:discovery', (evt) => {
     window.discoveredPeers.set(evt.detail.id.toString(), evt.detail)
-    addToLog(`Discovered peer ${evt.detail.id.toString()}`)
+    console.log(`Discovered peer ${evt.detail.id.toString()}`)
   })
 
   helia.libp2p.addEventListener('peer:connect', (evt) => {
-    addToLog(`Connected to ${evt.detail.toString()}`)
+    console.log(`Connected to ${evt.detail.toString()}`)
   })
   helia.libp2p.addEventListener('peer:disconnect', (evt) => {
-    addToLog(`Disconnected from ${evt.detail.toString()}`)
+    console.log(`Disconnected from ${evt.detail.toString()}`)
   })
 
   setInterval(() => {
     statusValueEl.innerHTML = helia.libp2p.isStarted() ? 'Online' : 'Offline'
-    updateConnectedPeers()
+    // updateConnectedPeers()
     updateDiscoveredPeers()
   }, 500)
 
@@ -48,28 +48,6 @@ document.addEventListener('DOMContentLoaded', async () => {
    */
 })
 
-function ms2TimeString (a) {
-  const k = a % 1e3
-  const s = a / 1e3 % 60 | 0
-  const m = a / 6e4 % 60 | 0
-  const h = a / 36e5 % 24 | 0
-
-  return (h ? (h < 10 ? '0' + h : h) + ':' : '00:') +
-    (m < 10 ? 0 : '') + m + ':' +
-    (s < 10 ? 0 : '') + s + ':' +
-    (k < 100 ? k < 10 ? '00' : 0 : '') + k
-}
-
-const getLogLineEl = (msg) => {
-  const logLine = document.createElement('span')
-  logLine.innerHTML = `${ms2TimeString(performance.now())} - ${msg}`
-
-  return logLine
-}
-const addToLog = (msg) => {
-  logEl.appendChild(getLogLineEl(msg))
-}
-
 let heliaInstance = null
 const instantiateHeliaNode = async () => {
   // application-specific data lives in the datastore
@@ -84,8 +62,6 @@ const instantiateHeliaNode = async () => {
     datastore,
     blockstore
   })
-  addToLog('Created Helia instance')
-
   return heliaInstance
 }
 
@@ -93,15 +69,17 @@ window.discoveredPeers = new Map()
 
 const updateConnectedPeers = () => {
   const peers = window.helia.libp2p.getPeers()
-  connectedPeerCountEl.innerHTML = peers.length
-  connectedPeersListEl.innerHTML = ''
-  for (const peer of peers) {
-    const peerEl = document.createElement('li')
-    peerEl.innerText = peer.toString()
-    connectedPeersListEl.appendChild(peerEl)
-  }
+  console.log(peers)
+  // connectedPeerCountEl.innerHTML = peers.length
+  // connectedPeersListEl.innerHTML = ''
+  // for (const peer of peers) {
+  //   const peerEl = document.createElement('li')
+  //   peerEl.innerText = peer.toString()
+  //   connectedPeersListEl.appendChild(peerEl)
+  // }
 }
 
 const updateDiscoveredPeers = () => {
-  discoveredPeerCountEl.innerHTML = window.discoveredPeers.size
+  // discoveredPeerCountEl.innerHTML = window.discoveredPeers.size
+  console.log( window.discoveredPeers.size)
 }
