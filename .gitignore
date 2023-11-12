@@ -1,4 +1,6 @@
 # Logs
+chat_history.json
+
 logs
 *.log
 npm-debug.log*

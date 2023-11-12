@@ -1,9 +1,15 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.9;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/utils/Counters.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract ServiceNFT is ERC721 {
+contract ServiceNFT is ERC721, Ownable {
+    using Counters for Counters.Counter;
+    Counters.Counter private _tokenIds;
+    Counters.Counter private _totalSupply;
+
     // Event emitted when a service is registered
     event ServiceRegistered(uint256 indexed serviceId, address indexed provider, string metadata);
 
@@ -30,12 +36,19 @@ contract ServiceNFT is ERC721 {
     constructor() ERC721("ServiceNFT", "SNFT") {}
 
     function registerService(string memory _metadata) external {
-        uint256 serviceId = totalSupply() + 1;
-        _safeMint(msg.sender, serviceId);
+        _tokenIds.increment();
+        uint256 serviceId = _tokenIds.current();
+        _mint(msg.sender, serviceId);
 
         services[serviceId] = Service(_metadata, msg.sender, false, 0, 0, address(0));
 
         emit ServiceRegistered(serviceId, msg.sender, _metadata);
+
+        _totalSupply.increment();
+    }
+
+    function totalSupply() external view returns (uint256) {
+        return _totalSupply.current();
     }
 
     function bookService(uint256 _serviceId, uint256 _startTime, uint256 _endTime) external {

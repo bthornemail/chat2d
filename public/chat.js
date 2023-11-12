@@ -6,6 +6,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
+  fetch('/chat')
+    .then(async (response) => {
+      const { chat_history } = await response.json()
+      console.log(chat_history);
+      chat_history.slice(0, 3).forEach((message) => {
+        appendMessage(message.role, message.content);
+      });
+    });
 
   // Event listener for send button click
   sendButton.addEventListener("click", function () {
@@ -40,6 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     messageElement.innerHTML = content;
     chatMessages.appendChild(messageElement);
+    return messageElement;
   }
 
   // Function to send a message to the chat bot
@@ -60,8 +69,11 @@ document.addEventListener("DOMContentLoaded", function () {
         throw new Error("Failed to send message");
       }
 
-      const data = await response.json();
-      appendMessage("assistant", data.response);
+      const { chat_history } = await response.json();
+      console.log(chat_history);
+      const element = appendMessage(chat_history[chat_history.length].role, chat_history[chat_history.length].content);
+      // const element = appendMessage("assistant", data.chat_history);
+      element.hidden = true
     } catch (error) {
       console.error(error);
       appendMessage("system", "An error occurred while sending the message.");

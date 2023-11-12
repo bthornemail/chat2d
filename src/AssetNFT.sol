@@ -1,9 +1,13 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.9;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/utils/Counters.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+contract AssetNFT is ERC721, Ownable {
+    using Counters for Counters.Counter;
+    Counters.Counter private _tokenIds;
 
-contract AssetNFT is ERC721 {
     struct Asset {
         string metadata;
         bool rented;
@@ -23,7 +27,8 @@ contract AssetNFT is ERC721 {
     constructor() ERC721("AssetNFT", "ANFT") {}
 
     function registerAsset(string memory _metadata) external {
-        uint256 assetId = totalSupply() + 1;
+        uint256 assetId = _tokenIds.current();
+        _tokenIds.increment();
         _safeMint(msg.sender, assetId);
         assets[assetId] = Asset(_metadata, false, 0, 0, 0, address(0));
         emit AssetRegistered(assetId, msg.sender, _metadata);

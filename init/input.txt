@@ -1,1 +1,1 @@
-no input detected
+refactor courseNFT its not working
