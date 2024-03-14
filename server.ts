@@ -6,7 +6,7 @@ import { readFileSync, writeFileSync } from 'fs';
 import path, { join } from 'path';
 import { marked } from 'marked';
 import VectorDatabase from './utils/vector.db.js';
-import chat from './chat.js';
+import chat from './modules/chatgpt/chat.js';
 import __get_dirname from '../../utils/__dirname.js';
 const app = express();
 const port = 3000;
