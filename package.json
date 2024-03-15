@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/bthornemail/vert.io#readme",
   "dependencies": {
+    "@ethersproject/wallet": "^5.7.0",
     "@helia/json": "^1.0.0",
     "@helia/strings": "^1.0.0",
     "@helia/unixfs": "^1.4.0",

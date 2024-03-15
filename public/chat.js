@@ -1,3 +1,26 @@
+import mqtt from '/src/mqtt.esm.mjs'
+import { Wallet} from "/src/ethers-5.1.esm.min.js";
+const config = {
+    port: 3883,
+    username: '',
+    password: ''
+  }
+const client = mqtt.connect("mqtt://127.0.0.1",config);
+
+client.on("connect", () => {
+  client.subscribe("presence", (err) => {
+    if (!err) {
+      client.publish("presence", "Hello mqtt");
+    }
+  });
+});
+
+client.on("message", (topic, message) => {
+  // message is Buffer
+  console.log(message.toString());
+  client.end();
+});
+
 document.addEventListener("DOMContentLoaded", function () {
   const chatContainer = document.getElementById("chat-container");
   const chatMessageBox = document.getElementById("chat-messages-box");

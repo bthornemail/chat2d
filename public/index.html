@@ -12,7 +12,7 @@
         <div id="chat-messages"></div>
       </div>
       <div class="chat-messages-input input-group mb-3">
-        <input type="text" id="chat-input-message" class="form-control" placeholder="Type your message...">
+        <textarea type="text" id="chat-input-message" class="form-control" placeholder="Type your message..."></textarea>
         <div class="input-group-append">
           <button id="chat-send-button" class="btn btn-primary">Send</button>
         </div>
@@ -24,6 +24,6 @@
           document.body.style.backgroundImage = `url(${response.url})`;
         });
     </script>
-    <script src="chat.js"></script>
+    <script type="module" src="chat.js"></script>
   </body>
 </html>
