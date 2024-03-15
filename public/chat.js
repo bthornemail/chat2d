@@ -1,8 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const chatContainer = document.getElementById("chatContainer");
-  const chatMessages = document.getElementById("chatMessages");
-  const inputMessage = document.getElementById("inputMessage");
-  const sendButton = document.getElementById("sendButton");
+  const chatContainer = document.getElementById("chat-container");
+  const chatMessageBox = document.getElementById("chat-messages-box");
+  const chatMessages = document.getElementById("chat-messages");
+  const inputMessage = document.getElementById("chat-input-message");
+  const sendButton = document.getElementById("chat-send-button");
 
 
 
@@ -34,6 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Function to append a message to the chat container
   function appendMessage(role, content) {
     const messageElement = document.createElement("div");
+    messageElement.id = (Math.random() * 100000000).toFixed();
     messageElement.classList.add(role);
     switch (role) {
       case "system":
@@ -48,13 +50,16 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     messageElement.innerHTML = content;
     chatMessages.appendChild(messageElement);
+    inputMessage.focus()
+    messageElement.scrollIntoView(true)
+    chatMessages.scrollTo(chatMessages.clientHeight - 10);
     return messageElement;
   }
 
   // Function to send a message to the chat bot
   async function sendMessage(message) {
     appendMessage("user", message);
-    appendMessage("system", "Sending message...");
+    const element = appendMessage("system", "Sending message...");
     try {
       // Perform API call to the server with the message
       const response = await fetch("/chat", {
@@ -68,12 +73,13 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!response.ok) {
         throw new Error("Failed to send message");
       }
-
-      const { chat_history } = await response.json();
-      console.log(chat_history);
-      const element = appendMessage(chat_history[chat_history.length].role, chat_history[chat_history.length].content);
-      // const element = appendMessage("assistant", data.chat_history);
+      const {chatHistory} = await response.json();
+      console.log(chatHistory);
+      // const element = 
+      // appendMessage(chatHistory[chatHistory.length -1 ].role, chatHistory[chatHistory.length - 1].content);
+      let appenedElement = appendMessage(chatHistory[chatHistory.length -1 ].role, chatHistory[chatHistory.length - 1].content);
       element.hidden = true
+      appenedElement.focus({preventScroll: false})
     } catch (error) {
       console.error(error);
       appendMessage("system", "An error occurred while sending the message.");
