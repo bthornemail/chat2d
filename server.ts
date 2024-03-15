@@ -5,10 +5,8 @@ import multer from 'multer'; // for handling multipart/form-data, which is used 
 import { readFileSync, writeFileSync } from 'fs';
 import path, { join } from 'path';
 import { marked } from 'marked';
-import VectorDatabase from './services/vector.db.js';
-// import chat from './modules/chatgpt/chat.js';
 import __get_dirname from './bin/__dirname.js';
-import getAllFiles from './modules/chatgpt/bin/get.all.files';
+export type CHAT_HISTORY_MESSAGE = { role: "user" | "system" | "assistant", content: string }
 const app = express();
 const port = 3000;
 
@@ -24,38 +22,34 @@ app.use(express.urlencoded({ extended: true }))
 // connected to open ai
 // const vectorDB = new VectorDatabase("chat");
 // console.log(await vectorDB.createDoc("HEllo"))
-const chatHistory: { role: "user" | "system" | "assistant", content: string }[] = []// = JSON.parse(readFileSync(__get_dirname(import.meta.url, join("messages","chat_history.json")), "utf-8"))
+const chatHistory: CHAT_HISTORY_MESSAGE[] = []// = JSON.parse(readFileSync(__get_dirname(import.meta.url, join("messages","chat_history.json")), "utf-8"))
 app.get("/chat", async (req, res) => {
-    marked.setOptions({
-        mangle: false,
-        headerIds: false,
-    });
-    res.json({ chat_history: chatHistory })
+  marked.setOptions({
+    mangle: false,
+    headerIds: false,
+  });
+  res.json({ chat_history: chatHistory })
 })
 app.post("/chat", async (req, res) => {
-    marked.setOptions({
-        mangle: false,
-        headerIds: false,
-    });
-    chatHistory.push({
-        "role": "user",
-        "content": req.body.message
-    });
-    const output = await (async (message)=>message.toString())(req.body.message)
-    // vectorDB.createDoc(output)
-    console.log(output)
-    chatHistory.push({
-        "role": "assistant",
-        "content": output
-    });
-    writeFileSync(__get_dirname(import.meta.url, "messages/chat_history.json"), JSON.stringify(chatHistory));
-    const html = marked.parse(output);
-    // console.log(html)
-    res.json({ response: {
-      "role": "assistant",
-      "content": output
-  }, chatHistory,
-      message:  {role: 'assistant', content: output} })
+  marked.setOptions({
+    mangle: false,
+    headerIds: false,
+  });
+  const query: CHAT_HISTORY_MESSAGE = { "role": "user", "content": req.body.message }
+  chatHistory.push(query);
+  // Get response from app plugin
+  const output = await (async (message) => message.toString())(req.body.message)
+  //console.log(output)
+  const response: CHAT_HISTORY_MESSAGE = { role: "assistant", content: output }
+  chatHistory.push(response);
+  writeFileSync(__get_dirname(import.meta.url, "messages/chat_history.json"), JSON.stringify(chatHistory));
+  const html = marked.parse(output);
+  res.json({
+    response,
+    html,
+    chatHistory,
+    message: response
+  })
 })
 
 app.post('/upload', <any>upload.single('image'), (req: any, res: any) => {
