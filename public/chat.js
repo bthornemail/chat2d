@@ -52,7 +52,6 @@ document.addEventListener("DOMContentLoaded", function () {
     chatMessages.appendChild(messageElement);
     inputMessage.focus()
     messageElement.scrollIntoView(true)
-    chatMessages.scrollTo(chatMessages.clientHeight - 10);
     return messageElement;
   }
 
@@ -74,9 +73,8 @@ document.addEventListener("DOMContentLoaded", function () {
         throw new Error("Failed to send message");
       }
       const {chatHistory} = await response.json();
+      // Get response back from chat server
       console.log(chatHistory);
-      // const element = 
-      // appendMessage(chatHistory[chatHistory.length -1 ].role, chatHistory[chatHistory.length - 1].content);
       let appenedElement = appendMessage(chatHistory[chatHistory.length -1 ].role, chatHistory[chatHistory.length - 1].content);
       element.hidden = true
       appenedElement.focus({preventScroll: false})
