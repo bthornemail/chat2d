@@ -1,17 +1,57 @@
-document.addEventListener("DOMContentLoaded", function () {
+import mqtt from '/src/mqtt.esm.mjs'
+import { Wallet } from "/src/ethers-5.1.esm.min.js";
+
+
+
+document.addEventListener("DOMContentLoaded", async function () {
   const chatContainer = document.getElementById("chat-container");
   const chatMessageBox = document.getElementById("chat-messages-box");
   const chatMessages = document.getElementById("chat-messages");
   const inputMessage = document.getElementById("chat-input-message");
   const sendButton = document.getElementById("chat-send-button");
+  const config = {
+    port: 3883,
+    username: '',
+    password: '',
+    clientId: Wallet.createRandom().address,
+    keepalive: 60,
+    clean: true,
+    reconnectPeriod: 300000,
+    connectTimeout: 30000,
+    rejectUnauthorized: false,
+  }
+  const client = await  mqtt.connectAsync("mqtt://127.0.0.1", config);
+  client.on("connect", async () => {
+    try {
+      await client.subscribeAsync("presence",{
+        qos: 0,
+        rap: false,
+        rh: 0,
+      });
+      await client.publishAsync("presence", "Hello mqtt");
+    } catch (error) {
+      console.log('MQTT Subscribe to topics error', error);
+      return;
+    }
+  });
 
+  client.on("message", (topic, message) => {
+    // message is Buffer
+    console.log(topic);
+    console.log(message.toString());
+    const payloadMessage = { topic, message: new TextDecoder().decode(message) };
+    
+    appendMessage(topic, `<strong>${topic}</strong>
+    <p>${message.toString()}</p>`)
+    client.end();
+  });
 
 
   fetch('/chat')
     .then(async (response) => {
       const { chat_history } = await response.json()
       console.log(chat_history);
-      chat_history.slice(0, 3).forEach((message) => {
+      chat_history.forEach((message) => {
         appendMessage(message.role, message.content);
       });
     });
@@ -72,15 +112,41 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!response.ok) {
         throw new Error("Failed to send message");
       }
-      const {chatHistory} = await response.json();
+      const { chatHistory } = await response.json();
       // Get response back from chat server
       console.log(chatHistory);
-      let appenedElement = appendMessage(chatHistory[chatHistory.length -1 ].role, chatHistory[chatHistory.length - 1].content);
+      let appenedElement = appendMessage(chatHistory[chatHistory.length - 1].role, chatHistory[chatHistory.length - 1].content);
       element.hidden = true
-      appenedElement.focus({preventScroll: false})
+      appenedElement.focus({ preventScroll: false })
     } catch (error) {
       console.error(error);
       appendMessage("system", "An error occurred while sending the message.");
     }
   }
+  const unsubscribe = async (topic) => {
+    if (client) {
+      try {
+        await client.subscribeAsync(topic, {
+          qos: 0,
+          rap: false,
+          rh: 0,
+        })
+      } catch (error) {
+        console.log('MQTT Unsubscribe error', error);
+      }
+    }
+  };
+  const subscribe = async (topic) => {
+    if (client) {
+      try {
+        await client.subscribeAsync(topic, {
+          qos: 0,
+          rap: false,
+          rh: 0,
+        })
+      } catch (error) {
+        console.log('MQTT Unsubscribe error', error);
+      }
+    }
+  };
 });
